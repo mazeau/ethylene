@@ -10,7 +10,6 @@ ideal_gas(name='gas',
                      C8H16(628)  C6H12(723)  C6H14(730)  S(2611)
                      S(3116)     S(11724)""",
           reactions='gas-*',
-          transport='Mix',
           initial_state=state(temperature=300.0, pressure=OneAtm))
 
 ideal_interface(name='surface1',
@@ -99,10 +98,7 @@ species(name='n-heptane',
                 NASA([1262.75, 5000.00],
                      [ 1.38379971E+01,  4.85941816E-02, -1.95472819E-05,
                        3.52833289E-09, -2.39061569E-13, -3.05142526E+04,
-                      -4.48654615E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.366,
-                                well_depth=402.997))
+                      -4.48654615E+01])))
 
 species(name='Ar',
         atoms='Ar:1',
@@ -113,10 +109,7 @@ species(name='Ar',
                 NASA([1000.00, 6000.00],
                      [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
                        0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
-                       4.37967000E+00])),
-        transport=gas_transport(geom='atom',
-                                diam=3.33,
-                                well_depth=136.501))
+                       4.37967000E+00])))
 
 species(name='He',
         atoms='He:1',
@@ -127,10 +120,7 @@ species(name='He',
                 NASA([1000.00, 6000.00],
                      [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
                        0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
-                       9.28724000E-01])),
-        transport=gas_transport(geom='atom',
-                                diam=2.576,
-                                well_depth=10.2))
+                       9.28724000E-01])))
 
 species(name='Ne',
         atoms='Ne:1',
@@ -141,10 +131,7 @@ species(name='Ne',
                 NASA([1000.00, 6000.00],
                      [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
                        0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
-                       3.35532000E+00])),
-        transport=gas_transport(geom='atom',
-                                diam=3.758,
-                                well_depth=148.6))
+                       3.35532000E+00])))
 
 species(name='N2',
         atoms='N:2',
@@ -155,12 +142,7 @@ species(name='N2',
                 NASA([1000.00, 6000.00],
                      [ 2.95258000E+00,  1.39690000E-03, -4.92632000E-07,
                        7.86010000E-11, -4.60755000E-15, -9.23949000E+02,
-                       5.87189000E+00])),
-        transport=gas_transport(geom='linear',
-                                diam=3.621,
-                                well_depth=97.53,
-                                polar=1.76,
-                                rot_relax=4.0))
+                       5.87189000E+00])))
 
 species(name='C2H4(2)',
         atoms='C:2 H:4',
@@ -171,11 +153,7 @@ species(name='C2H4(2)',
                 NASA([979.37, 5000.00],
                      [ 3.55670229E+00,  1.10625819E-02, -4.17009559E-06,
                        7.85564219E-10, -5.70042086E-14,  4.32042473E+03,
-                       2.17665377E+00])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=3.971,
-                                well_depth=280.801,
-                                rot_relax=1.5))
+                       2.17665377E+00])))
 
 species(name='C4H8-1(3)',
         atoms='C:4 H:8',
@@ -186,11 +164,7 @@ species(name='C4H8-1(3)',
                 NASA([1007.28, 5000.00],
                      [ 7.20516863E+00,  2.36361619E-02, -9.03150325E-06,
                        1.65392736E-09, -1.16019318E-13, -3.79733809E+03,
-                      -1.24426086E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.176,
-                                well_depth=357.002,
-                                rot_relax=1.0))
+                      -1.24426086E+01])))
 
 species(name='C4H8-2(4)',
         atoms='C:4 H:8',
@@ -201,10 +175,7 @@ species(name='C4H8-2(4)',
                 NASA([1157.78, 5000.00],
                      [ 6.04218222E+00,  2.60073554E-02, -1.04844041E-05,
                        1.90882450E-09, -1.30601743E-13, -4.86273126E+03,
-                      -7.52672501E+00])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.289,
-                                well_depth=359.053))
+                      -7.52672501E+00])))
 
 species(name='H2(17)',
         atoms='H:2',
@@ -215,10 +186,7 @@ species(name='H2(17)',
                 NASA([1959.08, 5000.00],
                      [ 2.78816619E+00,  5.87640475E-04,  1.59010635E-07,
                       -5.52739465E-11,  4.34311304E-15, -5.96144481E+02,
-                       1.12730527E-01])),
-        transport=gas_transport(geom='linear',
-                                diam=2.833,
-                                well_depth=59.7))
+                       1.12730527E-01])))
 
 species(name='C2H6(73)',
         atoms='C:2 H:6',
@@ -229,11 +197,7 @@ species(name='C2H6(73)',
                 NASA([1012.42, 5000.00],
                      [ 2.82848184E+00,  1.73040581E-02, -6.73334315E-06,
                        1.23742041E-09, -8.65676548E-14, -1.19978077E+04,
-                       5.93812118E+00])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=4.302,
-                                well_depth=252.301,
-                                rot_relax=1.5))
+                       5.93812118E+00])))
 
 species(name='C4H10(77)',
         atoms='C:4 H:10',
@@ -244,10 +208,7 @@ species(name='C4H10(77)',
                 NASA([1147.60, 5000.00],
                      [ 6.78899599E+00,  3.03598725E-02, -1.21262363E-05,
                        2.19945742E-09, -1.50289895E-13, -1.91057812E+04,
-                      -1.17327118E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.415,
-                                well_depth=348.415))
+                      -1.17327118E+01])))
 
 species(name='C4H8(193)',
         atoms='C:4 H:8',
@@ -258,10 +219,7 @@ species(name='C4H8(193)',
                 NASA([1061.32, 5000.00],
                      [ 6.48663440E+00,  2.49945454E-02, -9.83291861E-06,
                        1.79345326E-09, -1.24009900E-13, -5.62448308E+03,
-                      -1.00311177E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.238,
-                                well_depth=351.146))
+                      -1.00311177E+01])))
 
 species(name='C6H12(199)',
         atoms='C:6 H:12',
@@ -272,10 +230,7 @@ species(name='C6H12(199)',
                 NASA([3144.66, 5000.00],
                      [ 2.63111437E+01,  2.09625560E-02, -8.88917459E-06,
                        1.47742097E-09, -8.83257986E-14, -2.26053361E+04,
-                      -1.22241742E+02])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.876,
-                                well_depth=387.836))
+                      -1.22241742E+02])))
 
 species(name='C6H14(251)',
         atoms='C:6 H:14',
@@ -286,10 +241,7 @@ species(name='C6H14(251)',
                 NASA([1048.16, 5000.00],
                      [ 1.11353754E+01,  4.25244871E-02, -1.65830081E-05,
                        3.01866041E-09, -2.09014516E-13, -2.62988340E+04,
-                      -3.13526859E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.051,
-                                well_depth=385.187))
+                      -3.13526859E+01])))
 
 species(name='C6H14(281)',
         atoms='C:6 H:14',
@@ -300,10 +252,7 @@ species(name='C6H14(281)',
                 NASA([1237.13, 5000.00],
                      [ 1.03163526E+01,  4.66435017E-02, -1.96012235E-05,
                        3.61723458E-09, -2.48218670E-13, -2.71928433E+04,
-                      -2.90978404E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.083,
-                                well_depth=387.9))
+                      -2.90978404E+01])))
 
 species(name='C4H10(302)',
         atoms='C:4 H:10',
@@ -314,10 +263,7 @@ species(name='C4H10(302)',
                 NASA([987.07, 5000.00],
                      [ 8.84805025E+00,  2.61184111E-02, -9.57935748E-06,
                        1.72896615E-09, -1.21008029E-13, -2.06283373E+04,
-                      -2.38572247E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.448,
-                                well_depth=351.237))
+                      -2.38572247E+01])))
 
 species(name='C6H14(308)',
         atoms='C:6 H:14',
@@ -328,10 +274,7 @@ species(name='C6H14(308)',
                 NASA([1002.80, 5000.00],
                      [ 1.14868354E+01,  4.22487190E-02, -1.59010293E-05,
                        2.86998539E-09, -1.99355079E-13, -2.73489714E+04,
-                      -3.43665507E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.083,
-                                well_depth=387.9))
+                      -3.43665507E+01])))
 
 species(name='C6H12(377)',
         atoms='C:6 H:12',
@@ -342,10 +285,7 @@ species(name='C6H12(377)',
                 NASA([1698.32, 5000.00],
                      [ 1.44974887E+01,  3.62933219E-02, -1.62657874E-05,
                        2.97195174E-09, -1.97265691E-13, -1.70271902E+04,
-                      -5.34000400E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.95,
-                                well_depth=398.057))
+                      -5.34000400E+01])))
 
 species(name='C6H12(416)',
         atoms='C:6 H:12',
@@ -356,10 +296,7 @@ species(name='C6H12(416)',
                 NASA([1917.59, 5000.00],
                      [ 1.85713833E+01,  3.37487534E-02, -1.61574143E-05,
                        2.95099503E-09, -1.92337797E-13, -1.99382403E+04,
-                      -7.94628222E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.95,
-                                well_depth=398.057))
+                      -7.94628222E+01])))
 
 species(name='C6H14(537)',
         atoms='C:6 H:14',
@@ -370,10 +307,7 @@ species(name='C6H14(537)',
                 NASA([999.59, 5000.00],
                      [ 8.28876430E+00,  4.86580683E-02, -1.80935552E-05,
                        3.19042654E-09, -2.16942349E-13, -2.75237932E+04,
-                      -2.00268176E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.127,
-                                well_depth=391.366))
+                      -2.00268176E+01])))
 
 species(name='C8H16(628)',
         atoms='C:8 H:16',
@@ -384,10 +318,7 @@ species(name='C8H16(628)',
                 NASA([1769.25, 5000.00],
                      [ 1.85303805E+01,  4.56621437E-02, -1.79513356E-05,
                        3.13739455E-09, -2.05727937E-13, -2.49802795E+04,
-                      -7.07503583E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.603,
-                                well_depth=435.36))
+                      -7.07503583E+01])))
 
 species(name='C6H12(723)',
         atoms='C:6 H:12',
@@ -398,10 +329,7 @@ species(name='C6H12(723)',
                 NASA([1083.88, 5000.00],
                      [ 1.07760956E+01,  3.82407598E-02, -1.60947986E-05,
                        3.05492336E-09, -2.16279178E-13, -1.45171346E+04,
-                      -3.12665872E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=5.976,
-                                well_depth=400.833))
+                      -3.12665872E+01])))
 
 species(name='C6H14(730)',
         atoms='C:6 H:14',
@@ -412,10 +340,7 @@ species(name='C6H14(730)',
                 NASA([979.31, 5000.00],
                      [ 1.04141290E+01,  4.37548101E-02, -1.59117938E-05,
                        2.82121604E-09, -1.94532295E-13, -2.71755515E+04,
-                      -3.03123408E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.117,
-                                well_depth=390.721))
+                      -3.03123408E+01])))
 
 species(name='S(2611)',
         atoms='C:8 H:16',
@@ -426,10 +351,7 @@ species(name='S(2611)',
                 NASA([1769.25, 5000.00],
                      [ 1.85303805E+01,  4.56621437E-02, -1.79513356E-05,
                        3.13739455E-09, -2.05727937E-13, -2.49802795E+04,
-                      -7.07503583E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.603,
-                                well_depth=435.36))
+                      -7.07503583E+01])))
 
 species(name='S(3116)',
         atoms='C:8 H:16',
@@ -440,10 +362,7 @@ species(name='S(3116)',
                 NASA([1656.80, 5000.00],
                      [ 1.47541622E+01,  5.17617196E-02, -2.13131886E-05,
                        3.83564554E-09, -2.57012667E-13, -2.33368929E+04,
-                      -4.87437538E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.603,
-                                well_depth=435.36))
+                      -4.87437538E+01])))
 
 species(name='S(11724)',
         atoms='C:8 H:16',
@@ -454,10 +373,7 @@ species(name='S(11724)',
                 NASA([1729.54, 5000.00],
                      [ 1.78627255E+01,  4.64965121E-02, -1.82645143E-05,
                        3.19733232E-09, -2.10205028E-13, -2.51886339E+04,
-                      -6.76356993E+01])),
-        transport=gas_transport(geom='nonlinear',
-                                diam=6.636,
-                                well_depth=438.314))
+                      -6.76356993E+01])))
 
 species(name='X(1)',
         atoms='X:1',
