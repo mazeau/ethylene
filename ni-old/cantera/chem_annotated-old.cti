@@ -1,0 +1,401 @@
+units(length='cm', time='s', quantity='mol', act_energy='kcal/mol')
+
+ideal_gas(name='gas',
+          elements="H D T C Ci O Oi N Ne Ar He Si S Cl X",
+          species="""Ar        Ne        N2        He(2)     CH4(3)
+                     H2(4)     C2H6(5)   CH3(6)    C3H8(7)   H(8)
+                     C2H5(9)   C4H8(10)  C2H4(11)""",
+          reactions='gas-*',
+          transport='Mix',
+          initial_state=state(temperature=300.0, pressure=OneAtm))
+
+ideal_interface(name='surface1',
+                elements="H D T C Ci O Oi N Ne Ar He Si S Cl X",
+                species="""X(1)       HeX(44)    C2H4X(59)""",
+                site_density=2.9e-09,
+                phases="gas",
+          reactions='surface1-*',
+                initial_state=state(temperature=300.0, pressure=OneAtm))
+
+#-------------------------------------------------------------------------------
+# Element data
+#-------------------------------------------------------------------------------
+
+element(symbol=u'X', atomic_mass=195.083)
+element(symbol=u'Ci', atomic_mass=13.003)
+element(symbol=u'D', atomic_mass=2.014)
+element(symbol=u'Oi', atomic_mass=18.0)
+element(symbol=u'T', atomic_mass=3.016)
+#-------------------------------------------------------------------------------
+# Species data
+#-------------------------------------------------------------------------------
+
+species(name=u'Ar',
+        atoms='Ar:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       4.37967000E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       4.37967000E+00])),
+        transport=gas_transport(geom='atom',
+                                diam=3.33,
+                                well_depth=136.501))
+
+species(name=u'Ne',
+        atoms='Ne:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       3.35532000E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       3.35532000E+00])),
+        transport=gas_transport(geom='atom',
+                                diam=3.758,
+                                well_depth=148.6))
+
+species(name=u'N2',
+        atoms='N:2',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 3.53101000E+00, -1.23661000E-04, -5.02999000E-07,
+                       2.43531000E-09, -1.40881000E-12, -1.04698000E+03,
+                       2.96747000E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 2.95258000E+00,  1.39690000E-03, -4.92632000E-07,
+                       7.86010000E-11, -4.60755000E-15, -9.23949000E+02,
+                       5.87189000E+00])),
+        transport=gas_transport(geom='linear',
+                                diam=3.621,
+                                well_depth=97.53,
+                                polar=1.76,
+                                rot_relax=4.0))
+
+species(name=u'He(2)',
+        atoms='He:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       9.28724000E-01]),
+                NASA([1000.00, 6000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00, -7.45375000E+02,
+                       9.28724000E-01])),
+        transport=gas_transport(geom='atom',
+                                diam=2.576,
+                                well_depth=10.2))
+
+species(name=u'CH4(3)',
+        atoms='H:4 C:1',
+        thermo=(NASA([100.00, 1084.12],
+                     [ 4.20541461E+00, -5.35556639E-03,  2.51123022E-05,
+                      -2.13762543E-08,  5.97522734E-12, -1.01619433E+04,
+                      -9.21277018E-01]),
+                NASA([1084.12, 5000.00],
+                     [ 9.08269344E-01,  1.14540798E-02, -4.57173491E-06,
+                       8.29190889E-10, -5.66314254E-14, -9.71997602E+03,
+                       1.39930739E+01])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=3.746,
+                                well_depth=141.4,
+                                polar=2.6,
+                                rot_relax=13.0))
+
+species(name=u'H2(4)',
+        atoms='H:2',
+        thermo=(NASA([100.00, 1959.07],
+                     [ 3.43536387E+00,  2.12712504E-04, -2.78629920E-07,
+                       3.40270992E-10, -7.76041471E-14, -1.03135983E+03,
+                      -3.90841637E+00]),
+                NASA([1959.07, 5000.00],
+                     [ 2.78819171E+00,  5.87607315E-04,  1.59026159E-07,
+                      -5.52770622E-11,  4.34334014E-15, -5.96159541E+02,
+                       1.12579226E-01])),
+        transport=gas_transport(geom='linear',
+                                diam=2.92,
+                                well_depth=38.0,
+                                polar=0.79,
+                                rot_relax=280.0))
+
+species(name=u'C2H6(5)',
+        atoms='H:6 C:2',
+        thermo=(NASA([100.00, 1012.43],
+                     [ 3.72237376E+00,  1.65106626E-03,  3.44167505E-05,
+                      -3.76847813E-08,  1.24446238E-11, -1.15575893E+04,
+                       4.68254851E+00]),
+                NASA([1012.43, 5000.00],
+                     [ 2.82856519E+00,  1.73039172E-02, -6.73326232E-06,
+                       1.23740138E-09, -8.65660807E-14, -1.19978431E+04,
+                       5.93765129E+00])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=4.302,
+                                well_depth=252.301,
+                                rot_relax=1.5))
+
+species(name=u'CH3(6)',
+        atoms='H:3 C:1',
+        thermo=(NASA([100.00, 697.66],
+                     [ 3.96043157E+00,  5.92932848E-04,  8.78577983E-06,
+                      -9.88034176E-09,  3.63236302E-12,  1.64218817E+04,
+                       3.39863562E-01]),
+                NASA([697.66, 5000.00],
+                     [ 3.09511241E+00,  5.55429758E-03, -1.88158778E-06,
+                       3.13334809E-10, -2.05195000E-14,  1.65426190E+04,
+                       4.20297585E+00])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=3.8,
+                                well_depth=144.001))
+
+species(name=u'C3H8(7)',
+        atoms='H:8 C:3',
+        thermo=(NASA([100.00, 990.00],
+                     [ 3.06333267E+00,  1.29218049E-02,  3.47020342E-05,
+                      -4.70929694E-08,  1.71377025E-11, -1.43905776E+04,
+                       1.07836628E+01]),
+                NASA([990.00, 5000.00],
+                     [ 5.60451434E+00,  2.19526844E-02, -8.22069410E-06,
+                       1.50101345E-09, -1.05633160E-13, -1.58394516E+04,
+                      -6.22687420E+00])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=4.982,
+                                well_depth=266.801,
+                                rot_relax=1.0))
+
+species(name=u'H(8)',
+        atoms='H:1',
+        thermo=(NASA([100.00, 2121.20],
+                     [ 2.50000000E+00,  1.37382135E-15, -2.66902032E-18,
+                       1.75563256E-21, -3.60841378E-25,  2.54742178E+04,
+                      -4.44972896E-01]),
+                NASA([2121.20, 5000.00],
+                     [ 2.50000000E+00,  3.04114587E-14, -1.54210734E-17,
+                       3.31770777E-21, -2.56694325E-25,  2.54742178E+04,
+                      -4.44972896E-01])),
+        transport=gas_transport(geom='atom',
+                                diam=2.05,
+                                well_depth=145.0))
+
+species(name=u'C2H5(9)',
+        atoms='H:5 C:2',
+        thermo=(NASA([100.00, 1006.88],
+                     [ 3.68744925E+00,  3.06908945E-03,  2.55866307E-05,
+                      -2.94067706E-08,  9.94038405E-12,  1.31153655E+04,
+                       6.96690635E+00]),
+                NASA([1006.88, 5000.00],
+                     [ 3.53787814E+00,  1.37310484E-02, -5.29558017E-06,
+                       9.71467257E-10, -6.80276574E-14,  1.26351502E+04,
+                       5.15527706E+00])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=4.302,
+                                well_depth=252.301,
+                                rot_relax=1.5))
+
+species(name=u'C4H8(10)',
+        atoms='H:8 C:4',
+        thermo=(NASA([100.00, 1007.28],
+                     [ 2.58772884E+00,  2.32777995E-02,  1.93412257E-05,
+                      -3.55496213E-08,  1.36905958E-11, -1.91872925E+03,
+                       1.45750626E+01]),
+                NASA([1007.28, 5000.00],
+                     [ 7.20517260E+00,  2.36361552E-02, -9.03149938E-06,
+                       1.65392645E-09, -1.16019243E-13, -3.79733977E+03,
+                      -1.24426309E+01])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=5.176,
+                                well_depth=357.002,
+                                rot_relax=1.0))
+
+species(name=u'C2H4(11)',
+        atoms='H:4 C:2',
+        thermo=(NASA([100.00, 979.36],
+                     [ 3.97470174E+00, -4.75826975E-03,  4.16777538E-05,
+                      -4.51384219E-08,  1.54221142E-11,  4.91540807E+03,
+                       3.62435950E+00]),
+                NASA([979.36, 5000.00],
+                     [ 3.55665987E+00,  1.10626544E-02, -4.17013757E-06,
+                       7.85574162E-10, -5.70050350E-14,  4.32044244E+03,
+                       2.17689232E+00])),
+        transport=gas_transport(geom='nonlinear',
+                                diam=3.971,
+                                well_depth=280.801,
+                                rot_relax=1.5))
+
+species(name=u'X(1)',
+        atoms='X:1',
+        thermo=(NASA([100.00, 1554.80],
+                     [ 7.10139953E-03, -4.25619964E-05,  8.98534187E-08,
+                      -7.80194744E-11,  2.32465797E-14, -8.76101938E-01,
+                      -3.11211399E-02]),
+                NASA([1554.80, 5000.00],
+                     [ 1.60299763E-01, -2.52235212E-04,  1.14181175E-07,
+                      -1.21471440E-11,  3.85788383E-16, -7.08100165E+01,
+                      -9.09526730E-01])))
+
+species(name=u'HeX(44)',
+        atoms='X:1 He:1',
+        thermo=(NASA([100.00, 2121.20],
+                     [ 2.50000000E+00,  1.37382135E-15, -2.66902032E-18,
+                       1.75563256E-21, -3.60841378E-25, -4.66545074E+03,
+                      -9.37720042E+00]),
+                NASA([2121.20, 5000.00],
+                     [ 2.50000000E+00,  3.04114587E-14, -1.54210734E-17,
+                       3.31770777E-21, -2.56694325E-25, -4.66545074E+03,
+                      -9.37720042E+00])))
+
+species(name=u'C2H4X(59)',
+        atoms='H:4 C:2 X:1',
+        thermo=(NASA([100.00, 937.27],
+                     [ 3.86112369E+00, -8.14132910E-03,  6.76024668E-05,
+                      -8.13657189E-08,  3.04535884E-11,  1.92589097E+03,
+                      -1.22582766E+01]),
+                NASA([937.27, 5000.00],
+                     [ 7.24534535E+00,  6.11665568E-03, -1.14902651E-06,
+                       2.08118194E-10, -1.95004700E-14,  3.08674250E+01,
+                      -3.50910307E+01])))
+
+#-------------------------------------------------------------------------------
+# Reaction data
+#-------------------------------------------------------------------------------
+#  Reaction index: Chemkin #1; RMG #19
+#  Template reaction: R_Recombination
+#  Flux pairs: CH3(6), CH4(3); H(8), CH4(3);
+#  Matched reaction 57 H + CH3 <=> CH4 in R_Recombination/training
+#  This reaction matched rate rule [C_methyl;H_rad]
+#  family: R_Recombination
+
+# Reaction 1
+reaction('H(8) + CH3(6) <=> CH4(3)', [1.930000e+14, 0.0, 0.27],
+         id='gas-1')
+#  Reaction index: Chemkin #2; RMG #21
+#  Template reaction: R_Recombination
+#  Flux pairs: H(8), H2(4); H(8), H2(4);
+#  Matched reaction 56 H + H <=> H2 in R_Recombination/training
+#  This reaction matched rate rule [H_rad;H_rad]
+#  family: R_Recombination
+
+# Reaction 2
+reaction('H(8) + H(8) <=> H2(4)', [5.450000e+10, 0.0, 1.5],
+         id='gas-2')
+#  Reaction index: Chemkin #3; RMG #22
+#  Template reaction: R_Recombination
+#  Flux pairs: CH3(6), C2H6(5); CH3(6), C2H6(5);
+#  Matched reaction 9 CH3 + CH3 <=> C2H6 in R_Recombination/training
+#  This reaction matched rate rule [C_methyl;C_methyl]
+#  family: R_Recombination
+
+# Reaction 3
+reaction('CH3(6) + CH3(6) <=> C2H6(5)', [9.450000e+14, -0.538, 0.135],
+         id='gas-3')
+#  Reaction index: Chemkin #4; RMG #23
+#  Template reaction: R_Recombination
+#  Flux pairs: C2H5(9), C2H6(5); H(8), C2H6(5);
+#  Matched reaction 58 H + C2H5 <=> C2H6-2 in R_Recombination/training
+#  This reaction matched rate rule [C_rad/H2/Cs;H_rad]
+#  family: R_Recombination
+
+# Reaction 4
+reaction('H(8) + C2H5(9) <=> C2H6(5)', [1.000000e+14, 0.0, 0.0],
+         id='gas-4')
+#  Reaction index: Chemkin #5; RMG #26
+#  Template reaction: R_Recombination
+#  Flux pairs: C2H5(9), C3H8(7); CH3(6), C3H8(7);
+#  Matched reaction 10 CH3 + C2H5 <=> C3H8 in R_Recombination/training
+#  This reaction matched rate rule [C_rad/H2/Cs;C_methyl]
+#  family: R_Recombination
+
+# Reaction 5
+reaction('C2H5(9) + CH3(6) <=> C3H8(7)', [1.230000e+15, -0.562, 0.021],
+         id='gas-5')
+#  Reaction index: Chemkin #6; RMG #31
+#  Template reaction: R_Addition_MultipleBond
+#  Flux pairs: C2H4(11), C2H5(9); H(8), C2H5(9);
+#  Matched reaction 2541 H + C2H4 <=> C2H5-2 in R_Addition_MultipleBond/training
+#  This reaction matched rate rule [Cds-HH_Cds-HH;HJ]
+#  family: R_Addition_MultipleBond
+
+# Reaction 6
+reaction('H(8) + C2H4(11) <=> C2H5(9)', [4.620000e+08, 1.64, 1.01],
+         id='gas-6')
+#  Reaction index: Chemkin #7; RMG #72
+#  Template reaction: H_Abstraction
+#  Flux pairs: H(8), H2(4); CH4(3), CH3(6);
+#  Matched reaction 186 CH4b + H <=> CH3_p1 + H2_p in H_Abstraction/training
+#  This reaction matched rate rule [C_methane;H_rad]
+#  family: H_Abstraction
+
+# Reaction 7
+reaction('CH4(3) + H(8) <=> H2(4) + CH3(6)', [4.100000e+03, 3.156, 8.755],
+         id='gas-7')
+#  Reaction index: Chemkin #8; RMG #73
+#  Template reaction: H_Abstraction
+#  Flux pairs: C2H6(5), C2H5(9); CH3(6), CH4(3);
+#  Matched reaction 215 C2H6 + CH3_r3 <=> C2H5b + CH4 in H_Abstraction/training
+#  This reaction matched rate rule [C_methane;C_rad/H2/Cs\H3]
+#  family: H_Abstraction
+
+# Reaction 8
+reaction('C2H6(5) + CH3(6) <=> CH4(3) + C2H5(9)', [3.500000e+01, 3.44, 10.384],
+         id='gas-8')
+#  Reaction index: Chemkin #9; RMG #76
+#  Template reaction: Disproportionation
+#  Flux pairs: CH3(6), CH4(3); C2H5(9), C2H4(11);
+#  Matched reaction 5 CH3 + C2H5 <=> CH4 + C2H4 in Disproportionation/training
+#  This reaction matched rate rule [C_methyl;Cmethyl_Csrad]
+#  family: Disproportionation
+
+# Reaction 9
+reaction('C2H5(9) + CH3(6) <=> CH4(3) + C2H4(11)', [6.570000e+14, -0.68, 0.0],
+         id='gas-9')
+#  Reaction index: Chemkin #10; RMG #77
+#  Template reaction: H_Abstraction
+#  Flux pairs: C2H6(5), C2H5(9); H(8), H2(4);
+#  Matched reaction 210 C2H6 + H <=> C2H5b + H2_p in H_Abstraction/training
+#  This reaction matched rate rule [H2;C_rad/H2/Cs\H3]
+#  family: H_Abstraction
+
+# Reaction 10
+reaction('C2H6(5) + H(8) <=> H2(4) + C2H5(9)', [1.150000e+08, 1.9, 7.53],
+         id='gas-10')
+#  Reaction index: Chemkin #11; RMG #80
+#  Template reaction: Disproportionation
+#  Flux pairs: H(8), H2(4); C2H5(9), C2H4(11);
+#  Matched reaction 4 H + C2H5 <=> H2 + C2H4 in Disproportionation/training
+#  This reaction matched rate rule [H_rad;Cmethyl_Csrad]
+#  family: Disproportionation
+
+# Reaction 11
+reaction('H(8) + C2H5(9) <=> H2(4) + C2H4(11)', [1.083000e+13, 0.0, 0.0],
+         id='gas-11')
+#  Reaction index: Chemkin #12; RMG #83
+#  Template reaction: Disproportionation
+#  Flux pairs: C2H5(9), C2H6(5); C2H5(9), C2H4(11);
+#  Matched reaction 6 C2H5 + C2H5-2 <=> C2H6 + C2H4 in Disproportionation/training
+#  This reaction matched rate rule [C_rad/H2/Cs;Cmethyl_Csrad]
+#  family: Disproportionation
+
+# Reaction 12
+reaction('C2H5(9) + C2H5(9) <=> C2H6(5) + C2H4(11)', [6.900000e+13, -0.35, 0.0],
+         id='gas-12')
+#  Reaction index: Chemkin #1; RMG #50
+#  Template reaction: Surface_Adsorption_vdW
+#  Flux pairs: X(1), HeX(44); He(2), HeX(44);
+#  Exact match found for rate rule [Adsorbate;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Adsorption_vdW
+
+# surface1 Reaction 1
+surface_reaction('He(2) + X(1) <=> HeX(44)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-1')
+#  Reaction index: Chemkin #2; RMG #71
+#  Template reaction: Surface_Adsorption_vdW
+#  Flux pairs: X(1), C2H4X(59); C2H4(11), C2H4X(59);
+#  Exact match found for rate rule [Adsorbate;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Adsorption_vdW
+
+# surface1 Reaction 2
+surface_reaction('X(1) + C2H4(11) <=> C2H4X(59)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-2')
